@@ -1,0 +1,33 @@
+.fab {
+  position: fixed;
+  bottom: 32px;
+  right: 24px;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #6366F1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 998;
+  box-shadow: 0 8px 24px rgba(59,130,246,0.4);
+  border: none;
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.fab--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.fab:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 16px 40px rgba(59,130,246,0.55);
+}
+
+.fab:active { transform: scale(0.95); }

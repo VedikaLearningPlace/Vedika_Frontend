@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════════════════════
+   VEDIKA — footer.css  (fully theme-adaptive)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── THEME TOKENS ───────────────────────────────────────────── */
+[data-theme="dark"] {
+  --foot-bg:               #020408;
+  --foot-border:           rgba(255,255,255,0.045);
+  --foot-divider:          rgba(255,255,255,0.04);
+  --foot-bottom-divider:   rgba(255,255,255,0.1);
+  --foot-text:             rgba(255,255,255,0.4);
+  --foot-text-muted:       rgba(255,255,255,0.22);
+  --foot-text-head:        rgba(255,255,255,0.28);
+  --foot-link:             rgba(255,255,255,0.4);
+  --foot-link-hover:       #fff;
+  --foot-logo-name:        #fff;
+  --foot-logo-sub:         rgba(255,255,255,0.3);
+  --foot-chip-bg:          rgba(81,130,255,0.09);
+  --foot-chip-bd:          rgba(81,130,255,0.18);
+  --foot-chip-txt:         #93C5FD;
+  --foot-exam-bg:          rgba(255,255,255,0.04);
+  --foot-exam-bd:          rgba(255,255,255,0.07);
+  --foot-exam-txt:         rgba(255,255,255,0.28);
+  --foot-facility:         rgba(255,255,255,0.38);
+  --foot-ci-label:         rgba(255,255,255,0.25);
+  --foot-copy:             rgba(255,255,255,0.18);
+  --foot-glow:             rgba(81,130,255,0.07);
+}
+
+[data-theme="light"] {
+  --foot-bg:               #EEF2FF;
+  --foot-border:           rgba(0,0,0,0.07);
+  --foot-divider:          rgba(0,0,0,0.07);
+  --foot-bottom-divider:   rgba(0,0,0,0.1);
+  --foot-text:             #526080;
+  --foot-text-muted:       #8494B8;
+  --foot-text-head:        #3D4D6E;
+  --foot-link:             #526080;
+  --foot-link-hover:       #080E1C;
+  --foot-logo-name:        #080E1C;
+  --foot-logo-sub:         #8494B8;
+  --foot-chip-bg:          rgba(81,130,255,0.1);
+  --foot-chip-bd:          rgba(81,130,255,0.28);
+  --foot-chip-txt:         #2D5AE0;
+  --foot-exam-bg:          rgba(81,130,255,0.07);
+  --foot-exam-bd:          rgba(81,130,255,0.18);
+  --foot-exam-txt:         #3D5AB8;
+  --foot-facility:         #526080;
+  --foot-ci-label:         #8494B8;
+  --foot-copy:             rgba(0,0,0,0.3);
+  --foot-glow:             rgba(81,130,255,0.1);
+}
+
+/* ─── SHELL ──────────────────────────────────────────────────── */
+.foot {
+  background: var(--foot-bg);
+  border-top: 1px solid var(--foot-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.foot__top-glow {
+  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 220px; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse, var(--foot-glow) 0%, transparent 70%);
+}
+
+.foot__main { position: relative; z-index: 1; }
+
+/* ─── GRID ───────────────────────────────────────────────────── */
+.foot__wrap {
+  max-width: 1280px; margin: 0 auto;
+  padding: 80px 40px 60px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.1fr 1.4fr;
+  gap: 56px;
+  border-bottom: 1px solid var(--foot-divider);
+}
+
+/* ─── BRAND ──────────────────────────────────────────────────── */
+.foot__logo {
+  display: inline-flex; align-items: center;
+  gap: 11px; margin-bottom: 18px; text-decoration: none;
+}
+.foot__logo-text { display: flex; flex-direction: column; gap: 1px; line-height: 1; }
+.foot__logo-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--foot-logo-name);
+  letter-spacing: 0.01em;
+}
+.foot__logo-sub {
+  font-size: 0.58rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--foot-logo-sub);
+}
+
+.foot__brand-desc {
+  font-size: 0.85rem;
+  color: var(--foot-text);
+  line-height: 1.85; max-width: 270px; margin-bottom: 22px;
+}
+
+.foot__chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+.foot__chip {
+  background: var(--foot-chip-bg);
+  border: 1px solid var(--foot-chip-bd);
+  color: var(--foot-chip-txt);
+  font-size: 0.68rem; font-weight: 600;
+  padding: 4px 12px; border-radius: 100px; letter-spacing: 0.04em;
+}
+
+.foot__exams { display: flex; flex-direction: column; gap: 8px; }
+.foot__exams-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foot-text-muted);
+}
+.foot__exam-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.foot__exam-tag {
+  font-size: 0.65rem; font-weight: 600;
+  color: var(--foot-exam-txt);
+  background: var(--foot-exam-bg);
+  border: 1px solid var(--foot-exam-bd);
+  padding: 3px 9px; border-radius: 4px;
+}
+
+/* ─── COLUMNS ────────────────────────────────────────────────── */
+.foot__col-head {
+  font-size: 0.62rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--foot-text-head);
+  margin-bottom: 20px;
+}
+.foot__col-list {
+  display: flex; flex-direction: column; gap: 6px;
+  list-style: none; padding: 0; margin: 0;
+}
+
+.foot__link {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.84rem; color: var(--foot-link);
+  text-decoration: none;
+  transition: color 0.2s, transform 0.25s var(--ease, cubic-bezier(0.4,0,0.2,1));
+}
+.foot__link svg { flex-shrink: 0; opacity: 0; transition: opacity 0.2s, transform 0.25s; }
+.foot__link:hover { color: var(--foot-link-hover); transform: translateX(4px); }
+.foot__link:hover svg { opacity: 1; transform: translateX(2px); }
+
+.foot__facility {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.82rem;
+  color: var(--foot-facility);
+  line-height: 1.5;
+}
+
+/* ─── CONTACT ────────────────────────────────────────────────── */
+.foot__contacts { display: flex; flex-direction: column; gap: 16px; }
+.foot__ci { display: flex; gap: 10px; align-items: flex-start; }
+.foot__ci-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border-radius: var(--r-sm, 8px); border: 1px solid;
+  display: flex; align-items: center; justify-content: center; margin-top: 2px;
+}
+.foot__ci-label {
+  display: block; font-size: 0.6rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--foot-ci-label);
+  margin-bottom: 3px;
+}
+.foot__ci-val { font-size: 0.8rem; color: var(--foot-text); line-height: 1.6; }
+
+/* ─── BOTTOM BAR ─────────────────────────────────────────────── */
+.foot__bottom { position: relative; z-index: 1; }
+.foot__bottom-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 18px 40px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+}
+.foot__copy, .foot__tagline { font-size: 0.73rem; color: var(--foot-copy); }
+.foot__bottom-divider {
+  width: 1px; height: 16px;
+  background: var(--foot-bottom-divider);
+  flex-shrink: 0;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .foot__wrap { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 640px) {
+  .foot__wrap { grid-template-columns: 1fr; gap: 32px; padding: 52px 24px 40px; }
+  .foot__bottom-inner { flex-direction: column; text-align: center; gap: 6px; }
+  .foot__bottom-divider { width: 40px; height: 1px; }
+}

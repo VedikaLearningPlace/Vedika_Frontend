@@ -1,0 +1,182 @@
+.fac {
+  padding: 140px 24px;
+  background: var(--bg);
+  position: relative; overflow: hidden; isolation: isolate;
+}
+
+.fac__bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 10%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 10%, transparent 100%);
+  pointer-events: none; z-index: 0;
+}
+
+.fac__orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); pointer-events: none; z-index: 0;
+}
+.fac__orb--1 {
+  width: 600px; height: 600px; top: -120px; right: -100px;
+  background: radial-gradient(circle, var(--accent-glow), transparent 65%);
+  animation: facFloat 13s ease-in-out infinite;
+}
+.fac__orb--2 {
+  width: 450px; height: 450px; bottom: -80px; left: -80px;
+  background: radial-gradient(circle, var(--violet-glow), transparent 65%);
+  animation: facFloat 10s ease-in-out infinite reverse;
+}
+.fac__orb--3 {
+  width: 280px; height: 280px; top: 50%; left: 48%;
+  background: radial-gradient(circle, rgba(6,214,160,0.07), transparent 65%);
+  animation: facFloat 8s ease-in-out infinite 2s;
+}
+
+.fac__wrap { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* ── GRID ── */
+.fac__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── CARD ── */
+.fc {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 28px 24px 24px;
+  position: relative; overflow: hidden; cursor: default;
+  opacity: 0; transform: translateY(20px);
+  transition:
+    opacity      0.6s var(--ease),
+    transform    0.6s var(--ease-spring),
+    background   0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    box-shadow   0.3s var(--ease);
+}
+.fc.in { opacity: 1; transform: none; }
+.fc:hover {
+  background: var(--bg3);
+  border-color: color-mix(in srgb, var(--fc, #5182FF) 35%, transparent);
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-glow);
+}
+
+/* Radial glow */
+.fc__glow {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(circle at 20% 20%, var(--fc, #5182FF), transparent 65%);
+  opacity: 0; transition: opacity 0.4s var(--ease);
+  pointer-events: none; border-radius: inherit;
+}
+.fc:hover .fc__glow { opacity: 0.07; }
+
+/* Shine streak on hover */
+.fc__shine {
+  position: absolute; z-index: 0;
+  top: -50%; left: -80%;
+  width: 60%; height: 200%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: skewX(-15deg);
+  transition: left 0.55s var(--ease);
+  pointer-events: none;
+}
+.fc:hover .fc__shine { left: 130%; }
+
+/* Top row */
+.fc__top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; position: relative; z-index: 2;
+}
+
+.fc__icon-box {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--fc, #5182FF) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fc, #5182FF) 22%, transparent);
+  color: var(--fc, #5182FF); flex-shrink: 0;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.3s;
+}
+.fc:hover .fc__icon-box {
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--fc, #5182FF) 35%, transparent);
+}
+
+.fc__tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 700;
+  color: var(--fc, #5182FF); opacity: 0.6;
+  background: color-mix(in srgb, var(--fc, #5182FF) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--fc, #5182FF) 18%, transparent);
+  padding: 3px 8px; border-radius: var(--r-full);
+  position: relative; z-index: 2;
+  transition: opacity 0.25s;
+}
+.fc:hover .fc__tag { opacity: 1; }
+
+/* Label */
+.fc__label {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 8px;
+  position: relative; z-index: 2;
+  transition: color 0.25s;
+}
+.fc:hover .fc__label { color: color-mix(in srgb, var(--fc, #5182FF) 70%, var(--text3)); }
+
+.fc__title {
+  font-size: 0.96rem; font-weight: 600; color: var(--text);
+  margin-bottom: 10px; letter-spacing: -0.01em; line-height: 1.3;
+  position: relative; z-index: 2; transition: color 0.25s;
+}
+.fc:hover .fc__title { color: var(--text); }
+
+.fc__desc {
+  font-size: 0.8rem; color: var(--text2);
+  line-height: 1.8; font-weight: 300;
+  position: relative; z-index: 2; transition: color 0.25s;
+}
+.fc:hover .fc__desc { color: var(--text); }
+
+/* Ghost number watermark */
+.fc__num {
+  position: absolute; bottom: 14px; right: 18px; z-index: 1;
+  font-family: var(--font-num, 'Bebas Neue', sans-serif);
+  font-size: 3.5rem; line-height: 1; letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--fc, #5182FF) 8%, transparent);
+  pointer-events: none; user-select: none;
+  transition: color 0.35s;
+}
+.fc:hover .fc__num {
+  color: color-mix(in srgb, var(--fc, #5182FF) 18%, transparent);
+}
+
+/* Bottom accent line */
+.fc__line {
+  position: absolute; bottom: 0; left: 12%; right: 12%; height: 1px; z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--fc, #5182FF), transparent);
+  opacity: 0; transition: opacity 0.35s var(--ease);
+}
+.fc:hover .fc__line { opacity: 0.5; }
+
+/* ── KEYFRAMES ── */
+@keyframes facFloat {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-18px); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) { .fac__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px)  { .fac__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  {
+  .fac { padding: 100px 16px; }
+  .fac__grid { grid-template-columns: 1fr; }
+}

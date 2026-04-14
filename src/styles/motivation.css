@@ -1,0 +1,634 @@
+/* ═══════════════════════════════════════════════════════════════
+   VEDIKA — motivation.css  (complete rewrite — THE FORGE)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── SECTION SHELL ──────────────────────────────────────────── */
+.mot {
+  padding: 160px 0 140px;
+  background: #030508;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ─── AMBIENT: DOT GRID ──────────────────────────────────────── */
+.mot__dots {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(81,130,255,0.22) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+  opacity: 0.18;
+}
+
+/* ─── AMBIENT: ORBS ──────────────────────────────────────────── */
+.mot__orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); pointer-events: none; z-index: 0;
+  animation: motFloat linear infinite;
+}
+.mot__orb--a {
+  width: 700px; height: 700px;
+  top: -200px; left: -200px;
+  background: radial-gradient(circle, rgba(81,130,255,0.14), transparent 70%);
+  animation-duration: 18s;
+}
+.mot__orb--b {
+  width: 500px; height: 500px;
+  bottom: -100px; right: -80px;
+  background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+/* ─── AMBIENT: NOISE ─────────────────────────────────────────── */
+.mot__noise {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── WRAP ───────────────────────────────────────────────────── */
+.mot__wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative; z-index: 1;
+}
+
+/* ─── SECTION HEAD ───────────────────────────────────────────── */
+.mot__head {
+  margin-bottom: 80px;
+}
+
+.mot__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 24px;
+}
+.mot__eyebrow-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent, #5182FF);
+  animation: motPulseDot 2.4s ease-in-out infinite;
+}
+
+.mot__title {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(3rem, 6.5vw, 5rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.mot__title em {
+  font-style: italic;
+  background: linear-gradient(135deg, #7BA4FF 0%, #C4B5FD 50%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: motGradShift 6s ease infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   QUOTE THEATER
+   ═══════════════════════════════════════════════════════════════ */
+.mot__theater {
+  display: grid;
+  grid-template-columns: 6px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 48px;
+  row-gap: 40px;
+  margin-bottom: 120px;
+  cursor: default;
+}
+
+/* ─── VERTICAL PROGRESS RAIL ─────────────────────────────────── */
+.mot__rail {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  align-self: stretch;
+}
+.mot__rail-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #5182FF 0%, #8B5CF6 60%, #06D6A0 100%);
+  transform-origin: top;
+  transform: scaleY(0);
+  border-radius: inherit;
+  transition: transform 0.08s linear;
+}
+
+/* ─── QUOTE BODY ─────────────────────────────────────────────── */
+.mot__qbody {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 12px 0 0;
+}
+
+/* Decorative quote mark */
+.mot__qmark-large {
+  width: 52px; height: 44px;
+  margin-bottom: 32px;
+}
+.mot__qmark-large svg { width: 100%; height: 100%; }
+
+/* ─── WORDS ──────────────────────────────────────────────────── */
+.mot__words {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: rgba(255,255,255,0.92);
+  margin: 0;
+  display: block;
+}
+
+/* Each word is a span that animates individually */
+.mot__word {
+  display: inline-block;
+  transition:
+    opacity   0.32s var(--ease, cubic-bezier(0.4,0,0.2,1)),
+    transform 0.38s var(--ease-spring, cubic-bezier(0.34,1.56,0.64,1)),
+    filter    0.32s var(--ease, cubic-bezier(0.4,0,0.2,1));
+  /* stagger: later words take longer */
+  transition-delay: calc(var(--wi) * 0.028s);
+}
+
+/* ENTER state */
+.mot__words--in .mot__word {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  filter: blur(0);
+}
+
+/* EXIT state — scatter upward */
+.mot__words--out .mot__word {
+  opacity: 0;
+  transform: translateY(-18px) rotate(-1.5deg);
+  filter: blur(3px);
+  /* exit is faster, reverse stagger */
+  transition-delay: calc((var(--wt) - var(--wi)) * 0.018s);
+}
+
+/* Initial hidden state before mount */
+.mot__words:not(.mot__words--in):not(.mot__words--out) .mot__word {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+/* ─── AUTHOR ─────────────────────────────────────────────────── */
+.mot__author {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 36px;
+  transition:
+    opacity   0.4s var(--ease, cubic-bezier(0.4,0,0.2,1)),
+    transform 0.5s var(--ease-spring, cubic-bezier(0.34,1.56,0.64,1));
+  transition-delay: 0.18s;
+}
+.mot__author--in  { opacity: 1; transform: none; }
+.mot__author--out { opacity: 0; transform: translateX(-12px); }
+
+.mot__author-dash {
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(81,130,255,0.7));
+  flex-shrink: 0;
+}
+.mot__author-name {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent, #5182FF);
+}
+.mot__author-field {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  margin-top: 3px;
+}
+
+/* ─── NAV TABS ───────────────────────────────────────────────── */
+.mot__nav {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mot__navbtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 100px;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    background   0.3s;
+}
+.mot__navbtn:hover {
+  border-color: rgba(81,130,255,0.25);
+  background: rgba(81,130,255,0.06);
+}
+.mot__navbtn.on {
+  border-color: rgba(81,130,255,0.4);
+  background: rgba(81,130,255,0.1);
+}
+
+.mot__navbtn-num {
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.3s;
+  position: relative; z-index: 1;
+}
+.mot__navbtn.on .mot__navbtn-num { color: #93C5FD; }
+
+/* Progress fill inside active tab */
+.mot__navbtn-prog {
+  position: absolute;
+  inset: 0;
+  background: rgba(81,130,255,0.12);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.08s linear;
+  border-radius: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOUR LAWS
+   ═══════════════════════════════════════════════════════════════ */
+.mot__laws-wrap {
+  position: relative;
+}
+
+.mot__laws-title {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mot__laws-title-num {
+  font-family: var(--font-num, 'Bebas Neue', Impact, sans-serif);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--accent, #5182FF);
+  opacity: 0.7;
+}
+
+.mot__laws {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+/* ─── SINGLE LAW ─────────────────────────────────────────────── */
+.mot__law {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 36px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.045);
+  overflow: hidden;
+  cursor: default;
+  /* reveal */
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity      0.65s var(--ease, cubic-bezier(0.4,0,0.2,1)),
+    transform    0.65s var(--ease-spring, cubic-bezier(0.34,1.56,0.64,1)),
+    border-color 0.3s var(--ease, cubic-bezier(0.4,0,0.2,1));
+}
+.mot__law.in  { opacity: 1; transform: none; }
+.mot__law:first-child { border-top: 1px solid rgba(255,255,255,0.045); }
+.mot__law:hover { border-color: color-mix(in srgb, var(--lc) 22%, transparent); }
+
+/* Background glow bloom */
+.mot__law-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at left center,
+    color-mix(in srgb, var(--lc) 12%, transparent) 0%,
+    transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease, cubic-bezier(0.4,0,0.2,1));
+  pointer-events: none;
+}
+.mot__law:hover .mot__law-glow { opacity: 1; }
+
+/* GIANT background ordinal — purely decorative */
+.mot__law-bg-num {
+  position: absolute;
+  right: -16px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-num, 'Bebas Neue', Impact, sans-serif);
+  font-size: 10rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.018);
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.5s var(--ease, cubic-bezier(0.4,0,0.2,1));
+}
+.mot__law:hover .mot__law-bg-num {
+  color: color-mix(in srgb, var(--lc) 10%, transparent);
+}
+
+/* ─── PILL NUMBER ────────────────────────────────────────────── */
+.mot__law-pill {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--lc) 28%, transparent);
+  background: color-mix(in srgb, var(--lc) 10%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lc);
+  flex-shrink: 0;
+  transition:
+    transform    0.4s var(--ease-spring, cubic-bezier(0.34,1.56,0.64,1)),
+    box-shadow   0.4s var(--ease, cubic-bezier(0.4,0,0.2,1)),
+    background   0.3s var(--ease, cubic-bezier(0.4,0,0.2,1));
+}
+.mot__law:hover .mot__law-pill {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--lc) 40%, transparent);
+  background: color-mix(in srgb, var(--lc) 18%, transparent);
+}
+
+/* ─── LAW CONTENT ────────────────────────────────────────────── */
+.mot__law-content {
+  min-width: 0;
+  position: relative; z-index: 1;
+}
+
+.mot__law-title {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+  transition: color 0.25s;
+  line-height: 1.25;
+}
+.mot__law:hover .mot__law-title { color: #fff; }
+
+.mot__law-desc {
+  font-size: 0.85rem;
+  color: rgba(228,234,255,0.38);
+  line-height: 1.8;
+  font-weight: 300;
+  transition: color 0.3s;
+  max-width: 480px;
+}
+.mot__law:hover .mot__law-desc { color: rgba(228,234,255,0.6); }
+
+/* ─── METRIC ─────────────────────────────────────────────────── */
+.mot__law-metric {
+  flex-shrink: 0;
+  text-align: right;
+  position: relative; z-index: 1;
+}
+.mot__law-val {
+  font-family: var(--font-num, 'Bebas Neue', Impact, sans-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--lc);
+  display: block;
+  transition: transform 0.4s var(--ease-spring, cubic-bezier(0.34,1.56,0.64,1));
+}
+.mot__law:hover .mot__law-val { transform: scale(1.06); }
+
+.mot__law-unit {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-left: 2px;
+}
+.mot__law-lbl {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.22);
+  font-weight: 600;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* Connector line at bottom of metric */
+.mot__law-line {
+  display: none; /* decorative – enabled on wide screens */
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────────────────── */
+@keyframes motFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%       { transform: translateY(-24px) rotate(3deg); }
+  66%       { transform: translateY(-12px) rotate(-2deg); }
+}
+
+@keyframes motGradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes motPulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.6); opacity: 0.55; }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .mot__wrap { padding: 0 32px; }
+
+  .mot__theater {
+    grid-template-columns: 4px 1fr;
+    column-gap: 32px;
+  }
+
+  .mot__law {
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px 20px;
+  }
+  .mot__law-metric {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .mot__law-val { font-size: 1.8rem; }
+}
+
+@media (max-width: 640px) {
+  .mot { padding: 100px 0 96px; }
+  .mot__wrap { padding: 0 20px; }
+
+  .mot__theater {
+    grid-template-columns: 3px 1fr;
+    column-gap: 22px;
+    margin-bottom: 80px;
+  }
+
+  .mot__words { font-size: clamp(1.45rem, 5.5vw, 1.9rem); }
+
+  .mot__law {
+    grid-template-columns: 40px 1fr;
+    gap: 12px 16px;
+    padding: 28px 0;
+  }
+  .mot__law-bg-num { display: none; }
+  .mot__law-metric {
+    grid-column: 1 / -1;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .mot__law-val { font-size: 1.5rem; }
+  .mot__laws-title { font-size: 1.3rem; }
+}
+
+@media (max-width: 400px) {
+  .mot__title { font-size: 2.6rem; }
+  .mot__nav { flex-wrap: wrap; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES — motivation.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Section shell ── */
+[data-theme="light"] .mot {
+  background: #F0F4FF;
+}
+[data-theme="light"] .mot__dots {
+  background-image: radial-gradient(rgba(81,130,255,0.35) 1px, transparent 1px);
+  opacity: 0.12;
+}
+[data-theme="light"] .mot__orb--a {
+  background: radial-gradient(circle, rgba(81,130,255,0.18), transparent 70%);
+}
+[data-theme="light"] .mot__orb--b {
+  background: radial-gradient(circle, rgba(139,92,246,0.14), transparent 70%);
+}
+[data-theme="light"] .mot__noise { opacity: 0.012; }
+
+/* ── Section head ── */
+[data-theme="light"] .mot__eyebrow { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .mot__title   { color: #080E1C; }
+
+/* ── Rail ── */
+[data-theme="light"] .mot__rail { background: rgba(0,0,0,0.08); }
+
+/* ── Quote text ── */
+[data-theme="light"] .mot__words { color: #0D1428; }
+
+/* ── Author ── */
+[data-theme="light"] .mot__author-dash {
+  background: linear-gradient(90deg, transparent, rgba(81,130,255,0.5));
+}
+[data-theme="light"] .mot__author-field { color: rgba(0,0,0,0.35); }
+
+/* ── Nav tabs ── */
+[data-theme="light"] .mot__navbtn {
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .mot__navbtn:hover {
+  border-color: rgba(81,130,255,0.4);
+  background: rgba(81,130,255,0.07);
+}
+[data-theme="light"] .mot__navbtn.on {
+  border-color: rgba(81,130,255,0.5);
+  background: rgba(81,130,255,0.1);
+}
+[data-theme="light"] .mot__navbtn-num { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .mot__navbtn.on .mot__navbtn-num { color: #2D5AE0; }
+[data-theme="light"] .mot__navbtn-prog { background: rgba(81,130,255,0.15); }
+
+/* ── Laws section title ── */
+[data-theme="light"] .mot__laws-title {
+  color: #0D1428;
+  border-bottom-color: rgba(0,0,0,0.07);
+}
+[data-theme="light"] .mot__laws-title-num { opacity: 1; }
+
+/* ── Law rows ── */
+[data-theme="light"] .mot__law {
+  border-bottom-color: rgba(0,0,0,0.07);
+}
+[data-theme="light"] .mot__law:first-child {
+  border-top-color: rgba(0,0,0,0.07);
+}
+[data-theme="light"] .mot__law:hover {
+  border-color: color-mix(in srgb, var(--lc) 30%, transparent);
+}
+
+/* Law glow — lighter bloom */
+[data-theme="light"] .mot__law-glow {
+  background: radial-gradient(ellipse at left center,
+    color-mix(in srgb, var(--lc) 10%, transparent) 0%,
+    transparent 60%);
+}
+
+/* Giant bg ordinal */
+[data-theme="light"] .mot__law-bg-num { color: rgba(0,0,0,0.03); }
+[data-theme="light"] .mot__law:hover .mot__law-bg-num {
+  color: color-mix(in srgb, var(--lc) 8%, transparent);
+}
+
+/* Pill */
+[data-theme="light"] .mot__law-pill {
+  border-color: color-mix(in srgb, var(--lc) 35%, transparent);
+  background:   color-mix(in srgb, var(--lc) 12%, transparent);
+}
+[data-theme="light"] .mot__law:hover .mot__law-pill {
+  background: color-mix(in srgb, var(--lc) 22%, transparent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--lc) 35%, transparent);
+}
+
+/* Law title & desc */
+[data-theme="light"] .mot__law-title { color: #0D1428; }
+[data-theme="light"] .mot__law:hover .mot__law-title { color: #020408; }
+[data-theme="light"] .mot__law-desc  { color: rgba(8,14,28,0.45); }
+[data-theme="light"] .mot__law:hover .mot__law-desc { color: rgba(8,14,28,0.7); }
+
+/* Metric label */
+[data-theme="light"] .mot__law-lbl { color: rgba(0,0,0,0.3); }

@@ -1,0 +1,216 @@
+/* ═══════════════════════════════════════════════════════════════
+   VEDIKA LEARNING PLACE — App.css
+   App shell layout, page transitions, route wrappers
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── APP SHELL ──────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  position: relative;
+}
+
+/* ─── MAIN CONTENT AREA ──────────────────────────────────────── */
+.app-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── PAGE WRAPPER ───────────────────────────────────────────── */
+/* Wraps each route page — handles enter/exit transitions */
+.page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  animation: pageEnter 0.5s var(--ease-out, cubic-bezier(0,0,0.2,1)) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ─── SECTION SPACING SYSTEM ─────────────────────────────────── */
+/* Consistent top/bottom padding for all sections */
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+.section--sm  { padding: 80px 0; }
+.section--lg  { padding: 160px 0; }
+.section--alt { background: var(--section-alt); }
+
+/* Dark inversion sections (light bg on dark theme, dark on light) */
+.section--invert {
+  background: var(--invert-section);
+  color: var(--text);
+}
+
+/* Sections with decorative gradient mesh background */
+.section--mesh {
+  position: relative;
+  isolation: isolate;
+}
+.section--mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(81,130,255,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 30%, rgba(139,92,246,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(6,214,160,0.05) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── RESPONSIVE SECTION PADDING ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .section     { padding: 80px 0; }
+  .section--sm { padding: 60px 0; }
+  .section--lg { padding: 100px 0; }
+}
+@media (max-width: 640px) {
+  .section     { padding: 64px 0; }
+  .section--sm { padding: 48px 0; }
+  .section--lg { padding: 80px 0; }
+}
+
+/* ─── STICKY SPACER ──────────────────────────────────────────── */
+/* Prevents content from hiding under fixed navbar */
+.nav-spacer {
+  height: 72px;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) { .nav-spacer { height: 64px; } }
+
+/* ─── BACK TO TOP ────────────────────────────────────────────── */
+/* Handled by ScrollToTopFAB.jsx but layout hook lives here */
+.fab-area {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: var(--z-nav, 100);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+@media (max-width: 640px) {
+  .fab-area { bottom: 20px; right: 20px; }
+}
+
+/* ─── GLOBAL LINK HOVER ──────────────────────────────────────── */
+a.link-accent {
+  color: var(--accent);
+  position: relative;
+  transition: color 0.2s var(--ease);
+}
+a.link-accent::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease);
+}
+a.link-accent:hover { color: var(--accent-light); }
+a.link-accent:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─── INLINE CODE STYLE ──────────────────────────────────────── */
+code, kbd {
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  font-size: 0.82em;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm, 8px);
+  padding: 2px 7px;
+  color: var(--accent);
+}
+kbd {
+  box-shadow: 0 2px 0 var(--border);
+  color: var(--text2);
+}
+
+/* ─── BLOCKQUOTE ─────────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 20px;
+  margin: 0;
+  background: var(--accent-dim);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.75;
+}
+
+/* ─── HORIZONTAL RULE ────────────────────────────────────────── */
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-2xl, 64px) 0;
+}
+
+/* ─── FORM ELEMENT RESET ─────────────────────────────────────── */
+input, textarea, select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md, 14px);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s var(--ease),
+              box-shadow 0.2s var(--ease),
+              background 0.2s var(--ease);
+  width: 100%;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+  background: var(--bg);
+}
+input::placeholder,
+textarea::placeholder { color: var(--text3); }
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.65;
+}
+
+/* ─── SELECTION HIGHLIGHT ─────────────────────────────────────  */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ─── PRINT ──────────────────────────────────────────────────── */
+@media print {
+  .app-main { padding: 0; }
+  .section   { padding: 24px 0; }
+  nav, footer, .fab-area { display: none; }
+}

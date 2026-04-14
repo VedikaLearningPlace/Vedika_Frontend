@@ -1,0 +1,66 @@
+.sp-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 2.5px; z-index: var(--z-cursor, 9999);
+  pointer-events: none;
+}
+.sp-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5182FF 0%, #8B5CF6 50%, #EC4899 100%);
+  box-shadow: 0 0 14px rgba(81,130,255,0.65);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.12s linear;
+}
+
+.sp-fab-wrap {
+  position: fixed; bottom: 32px; left: 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  z-index: calc(var(--z-nav, 100) - 2);
+  opacity: 0; pointer-events: none;
+  transform: translateX(-12px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease-spring);
+}
+.sp-fab-wrap.show { opacity: 1; pointer-events: all; transform: translateX(0); }
+
+.sp-ring-wrap {
+  position: relative; width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--glass, rgba(15,24,40,0.75));
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+.sp-ring-wrap svg { position: absolute; top: 0; left: 0; overflow: visible; }
+
+/* Percentage display */
+.sp-pct {
+  font-family: var(--font-body);
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--accent, #5182FF);
+  position: relative; z-index: 1;
+  line-height: 1; letter-spacing: -0.02em;
+  display: flex; align-items: baseline; gap: 0;
+}
+.sp-pct-sign {
+  font-size: 0.55rem; font-weight: 700;
+  opacity: 0.8; margin-left: 1px;
+}
+
+.sp-fab {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, #5182FF, #8B5CF6);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(81,130,255,0.45);
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease);
+  position: relative; overflow: hidden;
+}
+.sp-fab::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.sp-fab:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 16px 44px rgba(81,130,255,0.6); }
+.sp-fab:hover::before { opacity: 1; }
+.sp-fab:active { transform: scale(0.95); }
+
+@media (max-width: 768px) { .sp-fab-wrap { bottom: 20px; left: 16px; } }
