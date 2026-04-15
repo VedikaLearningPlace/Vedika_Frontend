@@ -183,7 +183,6 @@ export default function ContactSection({ fullPage }) {
 
             <div className="con__form-header">
               <h3 className="con__form-title">Send a Message</h3>
-              <p className="con__form-sub">Both you and our team receive an email instantly.</p>
             </div>
 
             {sent ? (
