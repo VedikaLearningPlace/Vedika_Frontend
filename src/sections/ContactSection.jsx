@@ -34,7 +34,7 @@ const INFO = [
       </svg>
     ),
     label: 'Email',
-    lines: ['info@vedikalearning.com'],
+    lines: ['vedikalearningplace@gmail.com'],
   },
   {
     color: '#FFB700',
