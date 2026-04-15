@@ -112,10 +112,24 @@ export default function AchieversSection({ fullPage }) {
 
               <div className="ac__head">
                 <div className="ac__head-bg" aria-hidden="true"/>
-                <div className="ac__avatar-wrap">
-                  <img src={a.img} alt={a.name} className="ac__img" loading="lazy"/>
-                  <div className="ac__avatar-ring" aria-hidden="true"/>
-                </div>
+<div className="ac__avatar-wrap">
+  <div className="ac__img">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path 
+        d="M12 12c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5z" 
+        fill="white"
+        opacity="0.9"
+      />
+      <path 
+        d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" 
+        fill="white"
+        opacity="0.9"
+      />
+    </svg>
+  </div>
+
+  <div className="ac__avatar-ring" aria-hidden="true"/>
+</div>
                 <div className="ac__meta">
                   <h3 className="ac__name">{a.name}</h3>
                   <p className="ac__exam">{a.exam}</p>

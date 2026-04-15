@@ -267,3 +267,27 @@
   .ach { padding: 100px 16px; }
   .ach__grid { grid-template-columns: 1fr; }
 }
+
+.ac__img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in srgb, var(--ac) 70%, white 10%),
+    color-mix(in srgb, var(--ac) 30%, transparent)
+  );
+
+  border: 2px solid color-mix(in srgb, var(--ac) 60%, transparent);
+
+  box-shadow:
+    0 0 14px color-mix(in srgb, var(--ac) 50%, transparent),
+    inset 0 0 10px color-mix(in srgb, var(--ac) 25%, transparent);
+
+  transition: all 0.4s ease;
+}
