@@ -489,6 +489,14 @@ function StarIcon({ half }) {
   )
 }
 
+/* ── Scroll Helper ──────────────────────────────────────────── */
+function scrollToSection(id) {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
 /* ── Main Hero ──────────────────────────────────────────────── */
 export default function Hero() {
   const typed      = useTypewriter(PHRASES)
@@ -632,7 +640,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="hero__ctas">
-          <button className="hero__cta-main" onClick={() => { window.location.href = '/contact' }}>
+          {/* ── Reserve Your Seat → scrolls to ContactSection ── */}
+          <button
+            className="hero__cta-main"
+            onClick={() => scrollToSection('contact')}
+            aria-label="Reserve your seat – scroll to contact section"
+          >
             <span className="hero__cta-shine" aria-hidden="true" />
             <span className="hero__cta-text">Reserve Your Seat</span>
             <span className="hero__cta-arrow" aria-hidden="true">
@@ -641,7 +654,13 @@ export default function Hero() {
               </svg>
             </span>
           </button>
-          <button className="hero__cta-ghost" onClick={() => { window.location.href = '/gallery' }}>
+
+          {/* ── Tour the Space → scrolls to GallerySection ── */}
+          <button
+            className="hero__cta-ghost"
+            onClick={() => scrollToSection('gallery')}
+            aria-label="Tour the space – scroll to gallery section"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <rect x="3"  y="3"  width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
               <rect x="14" y="3"  width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>

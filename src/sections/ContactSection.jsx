@@ -107,7 +107,7 @@ export default function ContactSection({ fullPage }) {
   }
 
   return (
-    <section className={`con ${fullPage ? 'con--full' : ''}`} ref={ref}>
+    <section id="contact" className={`con ${fullPage ? 'con--full' : ''}`} ref={ref}>
       <div className="con__bg-grid" aria-hidden="true"/>
       <div className="con__orb con__orb--1" aria-hidden="true"/>
       <div className="con__orb con__orb--2" aria-hidden="true"/>

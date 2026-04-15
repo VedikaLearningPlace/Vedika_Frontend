@@ -61,7 +61,7 @@ export default function GallerySection({ fullPage }) {
   }
 
   return (
-    <section className={`gal ${fullPage ? 'gal--full' : ''}`} ref={ref}>
+    <section id="gallery" className={`gal ${fullPage ? 'gal--full' : ''}`} ref={ref}>
       <div className="gal__bg-grid"    aria-hidden="true"/>
       <div className="gal__orb gal__orb--1" aria-hidden="true"/>
       <div className="gal__orb gal__orb--2" aria-hidden="true"/>
