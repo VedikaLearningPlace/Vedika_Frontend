@@ -194,7 +194,7 @@ export default function ContactSection({ fullPage }) {
                   </svg>
                 </div>
                 <h4>Message Received!</h4>
-                <p>We will reach out within the hour. Check your inbox for a confirmation.</p>
+                <p>We will reach out within the hour.</p>
                 <button className="con__resend" onClick={() => { setSent(false); setStatus(null) }}>
                   Send another message
                 </button>
